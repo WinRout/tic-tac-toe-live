@@ -19,7 +19,7 @@
 
         <button id="find">Search for a player</button>
 
-        <img id="loading_gif" src="./assets/XOsX.gif" alt="">
+        <img id="loading_gif" src="./assets/missing-head-mind-loading.gif" alt="">
     </div>
 
 
@@ -29,11 +29,9 @@
         const socket=io();
 
         let name;
+        let waiting=false;
         document.getElementById("find").addEventListener("click", function() {
             name=document.getElementById("name").value;
-            console.log(name);
-
-            // document.getElementById("user").innerText=name;
 
             if (name==null || name=='') {
                 alert("Invalid username. Please enter a name.");
@@ -41,12 +39,32 @@
 
             else {
                 socket.emit("find", {name:name});
+                document.getElementById("find").disabled = true
+                document.getElementById("name").disabled = true
                 document.getElementById("loading_gif").style.display="block"
+                document.getElementById("find").innerText = 'Waiting for opponent...'
             }
         })
 
+        socket.on("waiting", (e) => {
+            if (e.name == name) {
+                waiting = true;
+            }
+        })
 
         socket.on("find", (e) => {
+            
+            console.log(e.error)
+            if (e.error) {
+                if (e.name == name && !waiting) {
+                    alert(e.error)
+                    document.getElementById("find").disabled = false
+                    document.getElementById("name").disabled = false
+                    document.getElementById("loading_gif").style.display="none"
+                    document.getElementById("find").innerText = 'Search for a player'
+                    return
+                }
+            }
 
             let oppname
             let value

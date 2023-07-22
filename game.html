@@ -41,17 +41,15 @@
     </div>
 
     <button id="leave">Leave Game</button>
-    <button id="replay">Replay</button>
 
     <script>
-
-    document.getElementById('replay').style.display="none"
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         name = urlParams.get('name')
         oppname = urlParams.get('oppname')
         value = urlParams.get('value')
+        console.log(name, oppname, value)
         document.getElementById('user').innerText=name
         document.getElementById('oppName').innerText=oppname
         document.getElementById('value').innerText=value
@@ -154,9 +152,11 @@
                 })
 
                 sum%2==0 ? alert("X WON") : alert("O WON")
-                document.getElementById('replay').style.display="block"
-
+                setTimeout(() => {
+                    window.location.replace('/')
+                }, 2000)
             }
+
             else if (sum == 10) {
                 socket.emit("gameOver", {name:name})
 
@@ -165,7 +165,9 @@
                 })
 
                 alert("DRAW")
-                document.getElementById('replay').style.display="block"
+                setTimeout(() => {
+                    window.location.replace('/')
+                }, 2000)
             }
         }
 
@@ -180,6 +182,9 @@
             console.log(wholeft);
             if (wholeft == oppname) {
                 alert("Opponent left the game");
+                setTimeout(() => {
+                    window.location.replace('/')
+                }, 2000)
             }
         })
 

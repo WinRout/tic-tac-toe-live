@@ -5,6 +5,9 @@ const path=require("path")
 const http=require("http")
 const { Server } = require("socket.io")
 
+const hostname = '0.0.0.0'
+const port = 3000
+
 
 const server=http.createServer(app)
 
@@ -17,9 +20,14 @@ let playingArr=[]
 io.on("connection", (socket) => {
 
     socket.on("find", (e) => {
-        if(e.name!=null) { 
+        if (e.name == waitingArr[0]) {
+            io.emit("find", {name: e.name, error: 'Username already exists'})
+        }
+        if(e.name!=null && e.name!=waitingArr[0]) { 
 
             waitingArr.push(e.name)
+            console.log("Waiting : ", waitingArr)
+            io.emit("waiting", {name: e.name});
 
             if(waitingArr.length>=2) {
                 let p1={
@@ -40,7 +48,7 @@ io.on("connection", (socket) => {
                 }
             
             playingArr.push(obj)
-            console.log(playingArr)
+            console.log("New Game: ", playingArr)
             waitingArr.splice(0, 2)
 
 
@@ -56,16 +64,12 @@ io.on("connection", (socket) => {
 
             let objToChange=playingArr.find(obj => obj.p1.p1name === e.name)
 
-            console.log(objToChange)
-
             objToChange.p1.p1move=e.id
             objToChange.sum++
         }
         else if(e.value == "O") {
 
             let objToChange=playingArr.find(obj => obj.p2.p2name === e.name)
-
-            console.log(objToChange)
 
             objToChange.p2.p2move=e.id
             objToChange.sum++
@@ -77,21 +81,25 @@ io.on("connection", (socket) => {
 
     socket.on("gameOver", (e) => {
         playingArr = playingArr.filter(obj=>obj.p1.p1name!==e.name)
-        console.log(playingArr)
+        console.log("Game Over:", playingArr)
     })
 
     socket.on("leave", (e) => {
         io.emit("left", {name:e.name})
+        playingArr = playingArr.filter(obj=>obj.p1.p1name!==e.name)
+        playingArr = playingArr.filter(obj=>obj.p2.p2name!==e.name)
+        console.log(e.name, " left: ", playingArr)
     })
 
 })
 
 
 app.get("/", (req, res) => {
+    console.log("new entry")
     return res.sendFile("index.html")
 })
 
 
-server.listen(3000, () => {
-    console.log("port connected to 3000")
+server.listen(port, hostname, () => {
+    console.log("port connected to ", port)
 })
