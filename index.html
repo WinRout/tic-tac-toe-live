@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+    <h1>Tic Tac Toe</h1>
+    
+    <div>
+        <p id="enterName">Enter yout Name:</p>
+        <input type="text" placeholder="Name" id="name" autocomplete="off">
+    </div>
+
+    <button id="find">Search for a player</button>
+
+    <div id="loading_gif">
+        <div class="tenor-gif-embed" data-postid="22551485" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/loading-loader-animation-transparent-gif-22551485">Loading Loader Sticker</a>from <a href="https://tenor.com/search/loading-stickers">Loading Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+
+
+    <script>
+        document.getElementById("loading_gif").style.display="none"
+
+        const socket=io();
+
+        let name;
+        document.getElementById("find").addEventListener("click", function() {
+            name=document.getElementById("name").value;
+            console.log(name);
+
+            // document.getElementById("user").innerText=name;
+
+            if (name==null || name=='') {
+                alert("Invalid username. Please enter a name.");
+            }
+
+            else {
+                socket.emit("find", {name:name});
+                document.getElementById("loading_gif").style.display="block"
+            }
+        })
+
+
+        socket.on("find", (e) => {
+
+            let oppname
+            let value
+
+            const foundObj=(e.allPlayers).find(obj=>obj.p1.p1name==`${name}` || obj.p2.p2name==`${name}`)
+
+            foundObj.p1.p1name==`${name}` ? oppname=foundObj.p2.p2name : oppname=foundObj.p1.p1name
+            foundObj.p1.p1name==`${name}` ? value=foundObj.p1.p1value : value=foundObj.p2.p2value
+
+            window.location.replace(`/game.html?name=${name}&oppname=${oppname}&value=${value}`);
+        })
+
+    </script>
+    
+
+
+</body>
+</html>
