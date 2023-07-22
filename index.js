@@ -99,6 +99,18 @@ app.get("/", (req, res) => {
     return res.sendFile("index.html")
 })
 
+app.get("/api/waiting", (req, res) => {
+    data = []
+    waitingArr.forEach((item) => {
+        data.push(`{name: ${item}}`)
+    })
+    res.json(data)
+})
+
+app.get("/api/playing", (req, res) => {
+    res.json(playingArr)
+})
+
 
 server.listen(port, hostname, () => {
     console.log("port connected to ", port)
