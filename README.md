@@ -55,9 +55,11 @@ To run this application, you need the following installed on your system:
 Attention: If you cannot access the game from a different machine, check your firewall settings.
 
 3. First you choose a name and wait for an opponent to join the game. If you put a username that already is in the waiting list, you are alerted with a message.
+<img src="screenshots/screenshot1.png" alt="Tic Tac Toe" width="600">
+<img src="screenshots/screenshot2.png" alt="Tic Tac Toe" width="600">
 
 4. When an opponent gets into the game, the game autoatically starts. The player who was waiting first gets the X's values and plays first.
-
+<img src="screenshots/screenshot4.png" alt="Tic Tac Toe" width="600">
 5. To leave the game, press leave game and the opponent will be informed.
 
 ## API Endpoints
