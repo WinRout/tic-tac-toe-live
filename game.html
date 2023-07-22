@@ -10,28 +10,33 @@
 <body>
     <h1>Tic Tac Toe</h1>
 
-    <div>
+    <div class="players_div">
         <p id="userCont">You : <span id="user"></span></p>
         <p id="userCont">Opp : <span id="oppName"></span></p>
     </div>
+
+    <div class="whoisplaying_div">
+        <p id="valueCont">You are playing as <span id="value"></span></p>
+        <p id="whosTurn">X's Turn</p>
+    </div>
     
-    <br>
-
-    <p id="valueCont">You are playing as <span id="value"></span></p>
-    <br>
-    <p id="whosTurn">X's Turn</p>
-
     <div id="bigCont">
         <div id="cont">
-            <button id="btn1" class="btn"></button>
-            <button id="btn2" class="btn"></button>
-            <button id="btn3" class="btn"></button>
-            <button id="btn4" class="btn"></button>
-            <button id="btn5" class="btn"></button>
-            <button id="btn6" class="btn"></button>
-            <button id="btn7" class="btn"></button>
-            <button id="btn8" class="btn"></button>
-            <button id="btn9" class="btn"></button>
+            <div class="contRow">
+                <button id="btn1" class="btn"></button>
+                <button id="btn2" class="btn"></button>
+                <button id="btn3" class="btn"></button>
+            </div>
+            <div class="contRow">
+                <button id="btn4" class="btn"></button>
+                <button id="btn5" class="btn"></button>
+                <button id="btn6" class="btn"></button>
+            </div>
+            <div class="contRow">
+                <button id="btn7" class="btn"></button>
+                <button id="btn8" class="btn"></button>
+                <button id="btn9" class="btn"></button>
+            </div>
         </div>
     </div>
 

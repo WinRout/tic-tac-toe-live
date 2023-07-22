@@ -1,3 +1,141 @@
-.h1 {
-    color:aquamarine
+body {
+    height: 100vh;
+    background-image: linear-gradient(90deg, rgb(33, 72, 104), rgb(0, 124, 128));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+
+h1 {
+    color:whitesmoke;
+    font-size: 50px;
+    text-align: center;
+    
+}
+
+.welcome_wraper {
+    align-self: center;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input_box {
+    padding: 20px;
+    border-color: yellowgreen;
+    background-color:whitesmoke;
+    border-style:solid;
+    border-radius: 30px;
+    border-width: 1px;
+    margin-bottom: 20px;
+}
+
+#enterName {
+    color: black;
+}
+
+#name {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#find {
+    height: 40px;
+    background-color: yellowgreen;
+    font-weight:700;
+    border-radius: 10px;
+}
+
+#loading_gif {
+    height: 150px;
+    width: fit-content;
+    margin: 50px;
+}
+
+.players_div{
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+}
+
+#userCont {
+    color:gainsboro;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#valueCont {
+    color:gainsboro;
+    font-weight: 600;
+    font-size: 20px; 
+}
+
+#value {
+    color: yellowgreen;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+#whosTurn {
+    color: yellowgreen;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+#bigCont {
+    aspect-ratio: 1/1;
+    width: 300px;
+    padding: 20px;
+    background-color: transparent;
+    border-style: solid;
+    border-color: yellowgreen;
+    border-width: 1px;
+    border-radius: 20px;
+}
+
+#cont {
+    display: inline-grid;
+    width: 100%;
+    gap: 10px;
+    height: 100%;
+}
+
+.contRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.btn {
+    aspect-ratio: 1 / 1;
+    width: 30%;
+    border-radius: 20px;
+    color: 'black';
+    font-weight: 600;
+    font-size: 50px;
+}
+
+.btn:disabled {
+    color: black;
+}
+
+.whoisplaying_div {
+    display: flex;
+    width: 400px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#leave {
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: yellowgreen;
+    font-weight: 600;
 }
