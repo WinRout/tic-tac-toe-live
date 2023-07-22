@@ -7,7 +7,7 @@
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [API Endpoints (on the way...)]
+- [API Endpoints](#api-endpoints)
 - [Technologies Used](#technologies-used)
 
 ## Introduction
@@ -59,6 +59,11 @@ Attention: If you cannot access the game from a different machine, check your fi
 4. When an opponent gets into the game, the game autoatically starts. The player who was waiting first gets the X's values and plays first.
 
 5. To leave the game, press leave game and the opponent will be informed.
+
+## API Endpoints
+The application also provides very simple API to get information about the application's state
+- `GET /api/waiting`: Get the names that are waiting for an opponent.
+- `GET /api/playing`: Get all the games that are currently running (the players' names and symbols, their previous moves and also the sum of their total moves together).
 
 ## Technologies Used
 - Node.js
